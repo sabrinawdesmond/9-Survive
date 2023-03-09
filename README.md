@@ -24,7 +24,7 @@ In 9-Survive, users will be able to:
 ## Technologies, Libraries, APIs
 This project will be implemented with the following technologies:
 * The Canvas API to render the game board
-* Webpack to Babel bundle and transpile the source Javascript code
+* Webpack and Babel to bundle and transpile the source Javascript code
 * Npm to manage project dependencies
 ***
 ## Implementation Timeline
