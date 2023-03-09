@@ -14,7 +14,8 @@ In 9-Survive, users will be able to:
 ***
 ## Wireframes
 
-![Game Board](https://wireframe.cc/EQTPNC)
+<img width="1030" alt="Screenshot 2023-03-09 at 2 33 12 PM" src="https://user-images.githubusercontent.com/116519976/224140180-89e75350-0f33-4cb4-a3cf-7e34bfce334a.png">
+
 
 * Nav links will include links to the project’s GitHub repo and my Linkedin profile
 * There will be Start, Pause and Reset game controls as well as high scores on the right of the gameboard.
