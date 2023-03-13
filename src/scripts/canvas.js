@@ -1,5 +1,6 @@
 // import Enemy from "./enemy"
-import Circle from "./worker"
+import Circle from "./circle"
+import Square from "./squares";
 
 //centering canvas
 const canvas = document.querySelector('canvas')

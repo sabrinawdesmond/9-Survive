@@ -1,5 +1,5 @@
 // import Example from "./scripts/example"
-import Circle from "./scripts/worker"
+import Circle from "./scripts/circle"
 
 document.addEventListener("DOMContentLoaded", () => {
   // console.log('Hello World')
@@ -51,15 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const enemyColor = 'black';
   const enemyPositions = [
     // starting positions
-    { x: 100, y: 100, direction:[0, 1] },
-    { x: 100, y: 300, dir: [-1, 0] },
-    { x: 800, y: 100 },
-    { x: 800, y: 300 },
+    { x: 10, y: midy, direction:[1,0] },
+    { x: midx, y: 10, direction: [0, -1] },
+    { x: canvas.width - 60, y: midy, direction: [-1, 0] },
+    { x: midx, y: canvas.height - 60, direction: [0, 1] },
   ];
 
-  // const enemies = enemyPositions.map(options => {
-  //   return new Enemy(options);
-  // });
+  const enemies = enemyPositions.map(options => {
+    return new Enemy(options);
+  });
 
   function drawEnemies() {
     for (let i = 0; i < enemyPositions.length; i++) {
