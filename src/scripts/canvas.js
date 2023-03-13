@@ -1,5 +1,5 @@
 // import Enemy from "./enemy"
-// import Worker from "./worker"
+import Circle from "./worker"
 
 //centering canvas
 const canvas = document.querySelector('canvas')
@@ -22,19 +22,19 @@ canvas.height = window.innerHeight *  0.8;
 let midx = canvas.width/2
 let midy = canvas.height/2
 
-function Circle (x, y, radius) {
-  this.x = x
-  this.y = y
-  this.radius = radius
+// function Circle (x, y, radius) {
+//   this.x = x
+//   this.y = y
+//   this.radius = radius
 
-  this.draw = function() {
-    ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-    ctx.fillStyle = "blue"
-    ctx.fill()
-  }
-  this.draw()
-}
+//   this.draw = function() {
+//     ctx.beginPath()
+//     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+//     ctx.fillStyle = "blue"
+//     ctx.fill()
+//   }
+//   this.draw()
+// }
 let circle = new Circle(midx, midy, 20)
 
 window.onload = function() {
@@ -44,6 +44,15 @@ window.onload = function() {
 
 
 
+const enemySize = 50;
+const enemyColor = 'black';
+const enemyPositions = [
+  // starting positions
+  { x: 100, y: 100 },
+  { x: 100, y: 300 },
+  { x: 800, y: 100 },
+  { x: 800, y: 300 },
+];
 
 function drawEnemies() {
   for (let i = 0; i < enemyPositions.length; i++) {
@@ -51,36 +60,38 @@ function drawEnemies() {
     ctx.fillStyle = enemyColor;
     ctx.fillRect(x, y, enemySize, enemySize);
   }
+  this.update = function() {
+ 
+    if (this.x + 20 < 470) {
+      this.x ++
+    }
+    if (this.y + 20 < 240) {
+      this.y ++
+    }
+  }
+  // this.drawEnemies()
 }
 
 
-let enemy1 = ctx.fillRect(100, 100, 50, 50)
+// let enemy1 = ctx.fillRect(100, 100, 50, 50)
 
-const enemySize = 50;
-const enemyColor = 'black';
-const enemyPositions = [
-  // starting positions
-  { x: 100, y: 100 },
-  // { x: 100, y: 300 },
-  // { x: 800, y: 100 },
-  // { x: 800, y: 300 },
-];
 
-// function Enemies(x, y, dx, dy, height, width, color) {
-//   this.x = x
-//   this.y = y
-//   this.dx = dx
-//   this.dy = dy
-//   this.height = height
-//   this.width = width
-//   this.color = color
+
+// function init(){
+//   enemies = []
+
+//   for (let i = 0; i < 4; i ++) {
+//     const { x, y } = enemyPositions[i]
+//     let dx = (Math.random() - 0.5) * 2// velocity
+//     let dy = (Math.random() - 0.5) * 2
+//     enemies.push(new Enemy(x, y, dx, dy))
+//   }
 // }
-
-
 // function animate() {
 //   requestAnimationFrame(animate)
-//   ctx.clearRect(0,0,innerWidth, innerHeight)
+//   ctx.clearRect(0, 0, innerWidth, innerHeight)
 
-//   if ()
+//   for (let i = 0; i < enemies.length; i++) {
+//     enemies[i].update()
+//   }
 // }
-// animate()

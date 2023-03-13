@@ -52,3 +52,29 @@ function animate() {
     enemies[i].update()
   }
 }
+
+class Enemy {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+    this.vel = 0
+  }
+
+  drawEnemies = function () {
+
+    let enemySize = 50;
+    let enemyColor = 'black';
+    let enemyPositions = [
+      // starting positions
+      { x: 100, y: 100 },
+      { x: 100, y: 300 },
+      { x: 800, y: 100 },
+      { x: 800, y: 300 },
+    ];
+    for (let i = 0; i < enemyPositions.length; i++) {
+      const { x, y } = enemyPositions[i];
+      ctx.fillStyle = enemyColor;
+      ctx.fillRect(x, y, enemySize, enemySize);
+    }
+  }
+}
