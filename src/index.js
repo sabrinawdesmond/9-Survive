@@ -66,15 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // this.y += this.direction[1];
      
       if (this.x < midx) {
-        this.x += 1
+        this.x += .1
       } else {
-        this.x -= 1
+        this.x -= .1
       }
   
       if (this.y < midy) {
-        this.y += 1
+        this.y += .1
       } else {
-        this.y -= 1
+        this.y -= .1
       }
     }
     animate(ctx) {
