@@ -1,3 +1,6 @@
+// import Enemy from "./enemy"
+// import Worker from "./worker"
+
 //centering canvas
 const canvas = document.querySelector('canvas')
 canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto";
@@ -39,9 +42,9 @@ window.onload = function() {
   circle.draw()
 }
 
-function Enemy () {
 
-}
+
+
 function drawEnemies() {
   for (let i = 0; i < enemyPositions.length; i++) {
     const { x, y } = enemyPositions[i];
@@ -51,16 +54,16 @@ function drawEnemies() {
 }
 
 
-// let enemy1= ctx.fillRect(100, 100, 50, 50)
+let enemy1 = ctx.fillRect(100, 100, 50, 50)
 
 const enemySize = 50;
 const enemyColor = 'black';
 const enemyPositions = [
   // starting positions
   { x: 100, y: 100 },
-  { x: 100, y: 300 },
-  { x: 800, y: 100 },
-  { x: 800, y: 300 },
+  // { x: 100, y: 300 },
+  // { x: 800, y: 100 },
+  // { x: 800, y: 300 },
 ];
 
 // function Enemies(x, y, dx, dy, height, width, color) {
