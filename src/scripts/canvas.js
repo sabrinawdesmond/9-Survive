@@ -1,6 +1,6 @@
 //centering canvas
 const canvas = document.querySelector('canvas')
-canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto; border:2px solid blue";
+canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto";
 let ctx = canvas.getContext('2d');
 
 //background image
@@ -23,8 +23,6 @@ function Circle (x, y, radius) {
   this.x = x
   this.y = y
   this.radius = radius
-  // this.minRadius = radius
-  // this.color = colorArr[Math.floor(Math.random() * colorArr.length)]
 
   this.draw = function() {
     ctx.beginPath()
@@ -34,11 +32,16 @@ function Circle (x, y, radius) {
   }
   this.draw()
 }
+let circle = new Circle(midx, midy, 20)
 
 window.onload = function() {
   drawEnemies();
+  circle.draw()
 }
 
+function Enemy () {
+
+}
 function drawEnemies() {
   for (let i = 0; i < enemyPositions.length; i++) {
     const { x, y } = enemyPositions[i];
@@ -47,7 +50,8 @@ function drawEnemies() {
   }
 }
 
-let circle = new Circle(midx, midy, 40)
+
+// let enemy1= ctx.fillRect(100, 100, 50, 50)
 
 const enemySize = 50;
 const enemyColor = 'black';
