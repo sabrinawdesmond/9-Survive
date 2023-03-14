@@ -35,18 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const enemyColor = 'black';
   const startPos = [
     // starting positions
-    { x: 10, y: midy, direction: [1,0] },
-    { x: midx, y: 10, direction: [0, -1] },
-    { x: canvas.width - 60, y: midy, direction: [-1, 0] },
-    { x: midx, y: canvas.height - 60, direction: [0, 1] },  
-    { x: 10, y: midy, direction: [1,0] },
-    { x: midx, y: 10, direction: [0, -1] },
-    { x: canvas.width - 60, y: midy, direction: [-1, 0] },
-    { x: midx, y: canvas.height - 60, direction: [0, 1] },  
-    { x: 10, y: midy, direction: [1,0] },
-    { x: midx, y: 10, direction: [0, -1] },
-    { x: canvas.width - 60, y: midy, direction: [-1, 0] },
-    { x: midx, y: canvas.height - 60, direction: [0, 1] },
+    { x: -60, y: midy, direction: [1,0], isMoving: false }, // left
+    { x: midx, y: -60, direction: [0, -1], isMoving: false }, // top
+    { x: canvas.width, y: midy, direction: [-1, 0], isMoving: false }, // right
+    { x: midx, y: canvas.height, direction: [0, 1], isMoving: false },  // bottom
+    { x: -60, y: midy, direction: [1,0], isMoving: false },
+    { x: midx, y: -60, direction: [0, -1], isMoving: false },
+    { x: canvas.width, y: midy, direction: [-1, 0], isMoving: false },
+    { x: midx, y: canvas.height, direction: [0, 1], isMoving: false },  
+    { x: -60, y: midy, direction: [1,0], isMoving: false },
+    { x: midx, y: -60, direction: [0, -1], isMoving: false },
+    { x: canvas.width, y: midy, direction: [-1, 0], isMoving: false },
+    { x: midx, y: canvas.height, direction: [0, 1], isMoving: false },
   ];
  
   class Square {
@@ -54,13 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
       this.x = x;
       this.y = y;
       this.direction = direction
+
+      window.addEventListener("keydown", this.keydown)
     }
   
     drawEnemies() {
       for (let i = 0; i < enemies.length; i++) {
-        const { x, y } = enemies[i];
+        let enemy = enemies[i]
+        const { x, y } = enemy;
         ctx.fillStyle = enemyColor;
         ctx.fillRect(x, y, enemySize, enemySize);
+        enemy.isMoving = true
       }
     }
     // movement animation
@@ -93,8 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // puts attack positions into an array
   let enemies = attackPos.map(options => {
-    return new Square(options.x, options.y, options.direction);
+    return new Square(options.x, options.y, options.direction, options.isMoving);
   });
+
+  let topAttacks = enemies.filter(options => options.y === -60).map(options => ({...options}))
+  let bottomAttacks = enemies.filter(options => options.y === canvas.height).map(options => ({...options}))
+  let leftAttacks = enemies.filter(options => options.x === -60).map(options => ({...options}))
+  let rightAttacks = enemies.filter(options => options.x === canvas.width).map(options => ({...options}))
 
   function animate() {
     requestAnimationFrame(animate);
@@ -113,22 +122,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     drawNextEnemy()
   }
+  // keydown(e) {
+  //   if (e.key === '38') {
+  //     this.upPressed = true
+  //   } // up arrow
+  //   if (e.key === '40') {
+  //     this.downPressed = true
+  //     console.log("down key pressed")
+  //   } // down arrow
+  //   if (e.key === '37') {
+  //     this.leftPressed = true
+  //     console.log("left key pressed")
+  //   }  // left arrow
+  //   if (e.key === '39') {
+  //     this.rightPressed = true
+  //     console.log("right key pressed")
+  //   }  // right arrow
+
+  // }
+
+  // window.addEventListener("keydown", this.keydown)
+
+  // keydown () {
+  //   if (this.key === '38') this.upPressed = true // up arrow
+  //   if (this.key === '40') this.upPressed = true // down arrow
+  //   if (this.key === '37') this.upPressed = true  // left arrow
+  //   if (this.key === '39') this.upPressed = true  // right arrow
+  // }
+
 });
-
-class InputHandler {
-  constructor() {
-    this.keyInputs = []
-    window.addEventListener("keydown", function(event) {
-      if ((event.key === '38' || 
-      event.key === '40' ||
-      event.key === '37' ||
-      event.key === '39') && !this.keyInputs.includes(event.key)) {
-        this.keyInputs.push(event.key)
-      }
-      return keyInputs
-    })
-  }
-}
-
-const input = new InputHandler()
-// event listeners

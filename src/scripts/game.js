@@ -8,3 +8,7 @@ class Survive {
 
   
 }
+
+function gameLoop() {
+  Circle.draw
+}
