@@ -1,11 +1,8 @@
-// import Example from "./scripts/example"
 import Circle from "./scripts/circle"
 // import Square from "./scripts/squares";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // console.log('Hello World')
-  // const main = document.getElementById("main");
-  // new Example(main);
+
 
   const canvas = document.querySelector('canvas')
   canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto";
@@ -20,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  canvas.width = window.innerWidth * 0.8;
+  canvas.width = window.innerWidth * 0.5;
   canvas.height = window.innerHeight *  0.8;
 
 
@@ -95,7 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // circle.update();
     circle.draw(ctx);
     // enemies.forEach(enemy => enemy.drawEnemies(ctx));
-    enemies.forEach(enemy => enemy.animate(ctx));
+    let i = 0;
+    function drawNextEnemy() {
+      if (i < enemies.length) {
+        enemies[i].animate(ctx);
+        i++;
+        setTimeout(drawNextEnemy, 1500); // delay of 1 second
+      }
+    }
+  
+    drawNextEnemy();
+  ;
   }
 
 });
