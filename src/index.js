@@ -38,7 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { x: 10, y: midy, direction: [1,0] },
     { x: midx, y: 10, direction: [0, -1] },
     { x: canvas.width - 60, y: midy, direction: [-1, 0] },
-    { x: midx, y: canvas.height - 60, direction: [0, 1] },
+    { x: midx, y: canvas.height - 60, direction: [0, 1] },  { x: 10, y: midy, direction: [1,0] },
+    { x: midx, y: 10, direction: [0, -1] },
+    { x: canvas.width - 60, y: midy, direction: [-1, 0] },
+    { x: midx, y: canvas.height - 60, direction: [0, 1] },  
   ];
   // const enemies = enemyPositions.map(options => {
   //   return new Square(options);
@@ -63,15 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // this.y += this.direction[1];
      
       if (this.x < midx) {
-        this.x += .1
+        this.x += .25
       } else {
-        this.x -= .1
+        this.x -= .25
       }
   
       if (this.y < midy) {
-        this.y += .1
+        this.y += .25
       } else {
-        this.y -= .1
+        this.y -= .25
       }
     }
     animate(ctx) {
@@ -81,7 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
       this.drawEnemies();
     }
   }
-  let enemies = enemyPositions.map(options => {
+  let attackPos = []
+
+  for (let i = 0; i < 11; i++){
+    attackPos.push(enemyPositions[Math.floor(Math.random() * enemyPositions.length)])
+  }
+
+
+  let enemies = attackPos.map(options => {
     return new Square(options.x, options.y, options.direction);
   });
 
@@ -95,14 +105,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let i = 0;
     function drawNextEnemy() {
       if (i < enemies.length) {
-        enemies[i].animate(ctx);
-        i++;
-        setTimeout(drawNextEnemy, 1500); // delay of 1 second
+        // let random = enemies[Math.floor(Math.random() * enemies.length)]
+        // random.animate(ctx)
+        enemies[i].animate(ctx)
+        i++
+        setTimeout(drawNextEnemy, 1000)
       }
     }
-  
-    drawNextEnemy();
-  ;
+    drawNextEnemy()
   }
 
 });
