@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const enemySize = 50;
   const enemyColor = 'black';
-  const enemyPositions = [
+  const startPos = [
     // starting positions
     { x: 10, y: midy, direction: [1,0] },
     { x: midx, y: 10, direction: [0, -1] },
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { x: canvas.width - 60, y: midy, direction: [-1, 0] },
     { x: midx, y: canvas.height - 60, direction: [0, 1] },  
   ];
-  // const enemies = enemyPositions.map(options => {
+  // const enemies = startPos.map(options => {
   //   return new Square(options);
   // });
   class Square {
@@ -62,9 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     update() {
-      // this.x += this.direction[0];
-      // this.y += this.direction[1];
-     
       if (this.x < midx) {
         this.x += .25
       } else {
@@ -87,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let attackPos = []
 
   for (let i = 0; i < 11; i++){
-    attackPos.push(enemyPositions[Math.floor(Math.random() * enemyPositions.length)])
+    attackPos.push(startPos[Math.floor(Math.random() * startPos.length)])
   }
 
 
