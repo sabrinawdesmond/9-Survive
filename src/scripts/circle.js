@@ -6,7 +6,7 @@ export default class Circle {
     this.radius = radius;
 
     
-    window.addEventListener("keyup", this.keyup)
+    window.addEventListener("keydown", this.keydown)
   }
   
   draw(ctx) {
@@ -27,32 +27,46 @@ export default class Circle {
     this.draw(ctx);
   }
 
+
   keydown(event) {
-    if (event.key === '38') {
-      this.upPressed = true
-      console.log("up key pressed")
+    
+    if (event.code === 'ArrowUp') {
+      // this.upPressed = true
+      // console.log("up key pressed")
     } // up arrow
-    if (event.key === '40') {
-      this.downPressed = true
-      console.log("down key pressed")
+    if (event.code === 'ArrowDown') {
+      // this.downPressed = true
+      // console.log("down key pressed")
     } // down arrow
-    if (event.key === '37') {
-      this.leftPressed = true
-      console.log("left key pressed")
+    if (event.code === 'ArrowLeft') {
+      // this.leftPressed = true
+      // console.log("left key pressed")
     }  // left arrow
-    if (event.key === '39') {
-      this.rightPressed = true
-      console.log("up key pressed")
+    if (event.code === 'ArrowRight') {
+      // this.rightPressed = true
+      // console.log("up key pressed")
     }  // right arrow
 
   }
 
-  keyup(event) {
-    if (event.key === '38') this.upPressed = false // up arrow
-    if (event.key === '40') this.downPressed = false // down arrow
-    if (event.key === '37') this.leftPressed = false  // left arrow
-    if (event.key === '39') this.rightPressed = false 
-  }
+  // keyup(event) {
+  //   if (event.code === 'ArrowUp') {
+  //     // this.upPressed = false
+  //     // console.log("up key unpressed")
+  //   } // up arrow
+  //   if (event.code === 'ArrowDown') {
+  //     // this.downPressed = false
+  //     // console.log("down key unpressed")
+  //   } // down arrow
+  //   if (event.code === 'ArrowLeft') {
+  //     // this.leftPressed = false
+  //     // console.log("left key unpressed")
+  //   }  // left arrow
+  //   if (event.code === 'ArrowRight') {
+  //     // this.rightPressed = false
+  //     // console.log("up key unpressed")
+  //   } 
+  // }
 }
 // let circle = new Circle(midx, midy, 20)
 

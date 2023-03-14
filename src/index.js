@@ -50,13 +50,35 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
  
   class Square {
-    constructor(x, y, direction) {
+    constructor(x, y, direction, isMoving) {
       this.x = x;
       this.y = y;
       this.direction = direction
+      this.isMoving = isMoving
 
       window.addEventListener("keydown", this.keydown)
     }
+
+    keydown(event) {
+
+      for (let i = 0; i < enemies.length; i++) {
+        let enemy = enemies[i]
+        if ( enemy.y < 0 && event.code === 'ArrowUp' ) { // up arrow
+          console.log("above attacked")
+        } 
+        if (event.code === 'ArrowDown') { // down arrow
+          // console.log("down key pressed")
+        } 
+        if (event.code === 'ArrowLeft') { // left arrow
+          // console.log("left key pressed")
+        }  
+        if (event.code === 'ArrowRight') { // right arrow
+          // console.log("right key pressed")
+        }  
+      }
+
+    }
+
   
     drawEnemies() {
       for (let i = 0; i < enemies.length; i++) {
@@ -65,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = enemyColor;
         ctx.fillRect(x, y, enemySize, enemySize);
         enemy.isMoving = true
+        // console.log(enemy)
       }
     }
     // movement animation
@@ -122,32 +145,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     drawNextEnemy()
   }
+})
+  
   // keydown(e) {
-  //   if (e.key === '38') {
-  //     this.upPressed = true
+    
+  //   if (e.code === 'ArrowUp') {
+  //     // this.upPressed = true
+  //     // console.log("up key pressed")
   //   } // up arrow
-  //   if (e.key === '40') {
-  //     this.downPressed = true
-  //     console.log("down key pressed")
+  //   if (e.code === 'ArrowDown') {
+  //     // this.downPressed = true
+  //     // console.log("down key pressed")
   //   } // down arrow
-  //   if (e.key === '37') {
-  //     this.leftPressed = true
-  //     console.log("left key pressed")
+  //   if (e.code === 'ArrowLeft') {
+  //     // this.leftPressed = true
+  //     // console.log("left key pressed")
   //   }  // left arrow
-  //   if (e.key === '39') {
-  //     this.rightPressed = true
-  //     console.log("right key pressed")
+  //   if (e.code === 'ArrowRight') {
+  //     // this.rightPressed = true
+  //     // console.log("up key pressed")
   //   }  // right arrow
 
   // }
 
-  // window.addEventListener("keydown", this.keydown)
-
-  // keydown () {
-  //   if (this.key === '38') this.upPressed = true // up arrow
-  //   if (this.key === '40') this.upPressed = true // down arrow
-  //   if (this.key === '37') this.upPressed = true  // left arrow
-  //   if (this.key === '39') this.upPressed = true  // right arrow
-  // }
-
-});
+// });
