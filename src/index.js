@@ -38,14 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     { x: 10, y: midy, direction: [1,0] },
     { x: midx, y: 10, direction: [0, -1] },
     { x: canvas.width - 60, y: midy, direction: [-1, 0] },
-    { x: midx, y: canvas.height - 60, direction: [0, 1] },  { x: 10, y: midy, direction: [1,0] },
+    { x: midx, y: canvas.height - 60, direction: [0, 1] },  
+    { x: 10, y: midy, direction: [1,0] },
     { x: midx, y: 10, direction: [0, -1] },
     { x: canvas.width - 60, y: midy, direction: [-1, 0] },
     { x: midx, y: canvas.height - 60, direction: [0, 1] },  
+    { x: 10, y: midy, direction: [1,0] },
+    { x: midx, y: 10, direction: [0, -1] },
+    { x: canvas.width - 60, y: midy, direction: [-1, 0] },
+    { x: midx, y: canvas.height - 60, direction: [0, 1] },
   ];
-  // const enemies = startPos.map(options => {
-  //   return new Square(options);
-  // });
+ 
   class Square {
     constructor(x, y, direction) {
       this.x = x;
@@ -60,18 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fillRect(x, y, enemySize, enemySize);
       }
     }
-  
+    // movement animation
     update() {
       if (this.x < midx) {
-        this.x += .25
+        this.x += 0.25
       } else {
-        this.x -= .25
+        this.x -= 0.25
       }
   
       if (this.y < midy) {
-        this.y += .25
+        this.y += 0.25
       } else {
-        this.y -= .25
+        this.y -= 0.25
       }
     }
     animate(ctx) {
@@ -81,13 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
       this.drawEnemies();
     }
   }
-  let attackPos = []
 
-  for (let i = 0; i < 11; i++){
+  // grab random starting positions
+  let attackPos = []
+  for (let i = 0; i < 10; i++){
     attackPos.push(startPos[Math.floor(Math.random() * startPos.length)])
   }
 
-
+// puts attack positions into an array
   let enemies = attackPos.map(options => {
     return new Square(options.x, options.y, options.direction);
   });
@@ -95,15 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function animate() {
     requestAnimationFrame(animate);
     ctx.drawImage(background,0,0,canvas.width, canvas.height); 
-    // endrawEnemies();
-    // circle.update();
+    
     circle.draw(ctx);
-    // enemies.forEach(enemy => enemy.drawEnemies(ctx));
+    
+    //send out attacks 1 by 1
     let i = 0;
     function drawNextEnemy() {
       if (i < enemies.length) {
-        // let random = enemies[Math.floor(Math.random() * enemies.length)]
-        // random.animate(ctx)
         enemies[i].animate(ctx)
         i++
         setTimeout(drawNextEnemy, 1000)
@@ -111,5 +113,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     drawNextEnemy()
   }
-
 });
+
+class InputHandler {
+  constructor() {
+    this.keyInputs = []
+    window.addEventListener("keydown", function(event) {
+      if ((event.key === '38' || 
+      event.key === '40' ||
+      event.key === '37' ||
+      event.key === '39') && !this.keyInputs.includes(event.key)) {
+        this.keyInputs.push(event.key)
+      }
+      return keyInputs
+    })
+  }
+}
+
+const input = new InputHandler()
+// event listeners
