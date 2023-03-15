@@ -1,13 +1,16 @@
 # 9-Survive
 
+[9 - Survive](https://sabrinawdesmond.github.io/9-Survive/)
+
 
 ## Background and Overview
-9-Survive is an interactive game inspired by a [Google Doodle](https://www.google.com/doodles/halloween-2016) but instead of fighting off ghosts, you will be warding off workplace hazards like incoming emails, chatty co-workers, micro-managers, and the big boss, the CEO. The user will be typing a series of commands to fight off their attacker before they get to close. If the attacker gets too close, you lose a life. 
+9-Survive is an interactive game inspired by a [Google Doodle](https://www.google.com/doodles/halloween-2016) but instead of fighting off ghosts, you will be warding off workplace hazards like incoming emails, chatty co-workers, micro-managers, and the big boss, the CEO. The user will use the keyboard arrows to fight off their attacker before they get to close. If the attacker gets too close, you lose a life. 
 ***
 ## Functionality & MVPs
 
-In 9-Survive, users will be able to:
-* Fight off workplace hazards with a series of keyboard strokes.
+In 9-Survive:
+* There will be a series of randomized attacks from workplace distractions.
+* The user can fight off workplace hazards with their keyboard arrow.
 * The user can get coffee cup boosts to power up against their attackers or regain a lost life.  
 * The game continues unless the attackers close in on the user and the user loses 3 lives.
 * The speed of the attackers and difficulty in defeating them increases each level. 

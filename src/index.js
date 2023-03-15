@@ -88,13 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // movement animation
     update() {
-      if (this.x < midx) {
+      if (this.x < midx - 20) {
         this.x += 0.25
       } else {
         this.x -= 0.25
       }
   
-      if (this.y < midy) {
+      if (this.y < midy - 20) {
         this.y += 0.25
       } else {
         this.y -= 0.25

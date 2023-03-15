@@ -12,21 +12,29 @@ export default class TopBeam {
     "yellow",
   ];
 
-  constructor(x, y, speed, damage) {
+  constructor(x, y, speed, damage, direction) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.damage = damage;
-
+    this.direction = direction;
+    
     this.width = 3;
     this.height = 10;
+
+    if (direction.x !== 0) {
+      // left or right
+      this.width = 10;
+      this.height = 3;
+    }
     this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
   }
 
   draw(ctx) {
-    // console.log('drawing')
     ctx.fillStyle = this.color;
-    this.y -= this.speed;
+    // this.y -= this.speed;
+    this.y += this.direction.y * this.speed;
+    this.x += this.direction.x * this.speed;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
