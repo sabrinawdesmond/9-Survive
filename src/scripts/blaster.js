@@ -50,4 +50,14 @@ export default class Blaster {
   draw(ctx) {
     this.topBeams.forEach((beam) => beam.draw(ctx));
   }
+
+  collidewith(enemy) {
+    return this.topBeams.some(beam => {
+      if (beam.collidewith(enemy)) {
+        this.topBeams.splice(this.topBeams.indexOf(beam), 1);
+        return true
+      }
+      return false
+    })
+  }
 }

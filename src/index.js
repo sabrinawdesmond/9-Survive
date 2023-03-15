@@ -45,6 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
     { x: canvas.width, y: midy, direction: [-1, 0], isMoving: false, health: 5 },
     { x: midx, y: canvas.height, direction: [0, 1], isMoving: false, health: 5 },
   ];
+
+  function game() {
+    circle.draw(ctx)
+    // enemies.forEach((enemy) => {
+    //   if (blaster.collidewith(enemy)) {
+    //     if (enemy.health <= 0) {
+    //       let index = enemies.indexOf(enemy)
+    //       enemies.splice(index, 1)
+    //     }
+    //   } else {
+    //     enemy.draw(ctx)
+    //   }
+    // })
+  }
+  setInterval(game, 1000 / 60)
+  
  
   class Square {
     constructor(x, y, direction, isMoving, health) {
@@ -86,6 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
       this.update();
       this.draw();
     }
+
+    takeDamage(damage) {
+      this.health -= damage
+    }
   }
 
   // grab random starting positions
@@ -121,6 +141,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     drawNextEnemy()
+
+    enemies.forEach((enemy) => {
+      if (blaster.collidewith(enemy)) {
+        if (enemy.health <= 0) {
+          let index = enemies.indexOf(enemy)
+          enemies.splice(index, 1)
+        }
+      } else {
+        enemy.draw(ctx)
+      }
+    })
   }
 })
   

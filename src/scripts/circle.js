@@ -60,7 +60,7 @@ export default class Circle {
         console.log('pew pew')
         const speed = 6;
         const delay = 5;
-        const damage = 1;
+        const damage = 5;
         const beamX = this.x
         const beamY = this.y
         this.beam.shootUp(beamX, beamY, speed, damage, delay)
