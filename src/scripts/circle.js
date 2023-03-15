@@ -57,27 +57,27 @@ export default class Circle {
 
     shootUp() {
       if (this.upArrow === true){
-        console.log('pew pew')
+        // console.log('pew pew')
         const speed = 6;
         const delay = 5;
         const damage = 5;
-        const beamX = this.x
+        const beamX = this.x + this.radius/2
         const beamY = this.y
         this.beam.shootUp(beamX, beamY, speed, damage, delay)
       }
     }
     // }
-    // shootDown() {
-    //   if (this.downArrow === true){
-    //     // console.log('pew')
-    //     const speed = 6;
-    //     const delay = 5;
-    //     const damage = 1;
-    //     const beamX = this.x
-    //     const beamY = this.y
-    //     this.beam.shootDown(beamX, beamY, speed, damage, delay)
-    //   }
-    // }
+    shootDown() {
+      if (this.downArrow === true){
+        console.log('pew')
+        const speed = 6;
+        const delay = 5;
+        const damage = 5;
+        const beamX = this.x + this.radius/2
+        const beamY = this.y
+        this.beam.shootDown(beamX, beamY, speed, damage, delay)
+      }
+    }
     // shoot() {
     //   if (this.upArrow === true || this.downArrow === true || this.leftArrow === true || this.rightArrow === true){
     //     console.log('pew pew')

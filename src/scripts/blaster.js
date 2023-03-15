@@ -1,5 +1,5 @@
 import TopBeam from "./topBeams"
-// import BottomBeam from "./bottomBeams"
+import BottomBeam from "./bottomBeams"
 
 export default class Blaster {
   topBeams = []
@@ -12,20 +12,21 @@ export default class Blaster {
   }
 
   shootUp(x, y, speed, damage, delay) {
+    console.log('testing')
     if (this.timeBetween <= 0) {
       this.topBeams.push(new TopBeam(x, y, speed, damage))
       this.timeBetween = delay
     }
     this.timeBetween--
   }
-  // shootDown(x, y, speed, damage, delay) {
-  //   console.log("hit")
-  //   if (this.timeBetween <= 0) {
-  //     this.bottomBeams.push(new BottomBeam(x, y, speed, damage))
-  //     this.timeBetween = delay
-  //   }
-  //   this.timeBetween--
-  // }
+  shootDown(x, y, speed, damage, delay) {
+    console.log("hit")
+    if (this.timeBetween <= 0) {
+      this.bottomBeams.push(new BottomBeam(x, y, speed, damage))
+      this.timeBetween = delay
+    }
+    this.timeBetween--
+  }
   // shoot(x, y, speed, damage, delay) {
   //   if (this.timeBetween <= 0) {
   //     this.topBeams.push(new TopBeam(x, y, speed, damage))

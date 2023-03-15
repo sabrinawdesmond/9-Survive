@@ -1,21 +1,24 @@
-import Circle from "./scripts/circle"
-import Blaster from "./scripts/blaster";
+import Circle from "./scripts/circle.js"
+import Blaster from "./scripts/blaster.js";
 document.addEventListener("DOMContentLoaded", () => {
 
-  const canvas = document.querySelector('canvas')
+  // const enemies = []
+
+  const canvas = document.querySelector('canvas');
   canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto";
   let ctx = canvas.getContext('2d');
-
+  
   //background image
   var background = new Image();
-  background.src = "src/assets/background2.png";
-
+  background.src = "src/assets/fixedBackground.png";
+  
   background.onload = function(){
     ctx.drawImage(background,0,0,canvas.width, canvas.height);   
   }
-
+  
   canvas.width = window.innerWidth * 0.5;
   canvas.height = window.innerHeight *  0.8;
+  
 
   let midx = canvas.width/2
   let midy = canvas.height/2
@@ -48,16 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function game() {
     circle.draw(ctx)
-    // enemies.forEach((enemy) => {
-    //   if (blaster.collidewith(enemy)) {
-    //     if (enemy.health <= 0) {
-    //       let index = enemies.indexOf(enemy)
-    //       enemies.splice(index, 1)
-    //     }
-    //   } else {
-    //     enemy.draw(ctx)
-    //   }
-    // })
+    for (let i = 0; i < enemies.length; i++) {
+      let enemy = enemies[i]
+      if (blaster.collidewith(enemy)) {
+        if (enemy.health <= 0) {
+          enemies.splice(i, 1)
+          i--
+        }
+      } else {
+        enemy.draw(ctx)
+      }
+    }
   }
   setInterval(game, 1000 / 60)
   
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 // puts attack positions into an array
-  let enemies = attackPos.map(options => {
+  const enemies = attackPos.map(options => {
     return new Square(options.x, options.y, options.direction, options.isMoving);
   });
 
@@ -155,25 +159,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })
   
-  // keydown(e) {
-    
-  //   if (e.code === 'ArrowUp') {
-  //     // this.upPressed = true
-  //     // console.log("up key pressed")
-  //   } // up arrow
-  //   if (e.code === 'ArrowDown') {
-  //     // this.downPressed = true
-  //     // console.log("down key pressed")
-  //   } // down arrow
-  //   if (e.code === 'ArrowLeft') {
-  //     // this.leftPressed = true
-  //     // console.log("left key pressed")
-  //   }  // left arrow
-  //   if (e.code === 'ArrowRight') {
-  //     // this.rightPressed = true
-  //     // console.log("up key pressed")
-  //   }  // right arrow
-
-  // }
-
-// });

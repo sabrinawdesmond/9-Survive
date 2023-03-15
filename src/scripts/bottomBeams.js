@@ -1,4 +1,4 @@
-export default class TopBeam {
+export default class BottomBeam {
   colors = [
     "red",
     "green",
@@ -24,9 +24,8 @@ export default class TopBeam {
   }
 
   draw(ctx) {
-    // console.log('drawing')
     ctx.fillStyle = this.color;
-    this.y -= this.speed;
+    this.y += this.speed;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
