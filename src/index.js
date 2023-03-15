@@ -1,31 +1,28 @@
-import Circle from "./scripts/circle.js"
+import Circle from "./scripts/circle.js";
 import Blaster from "./scripts/blaster.js";
 document.addEventListener("DOMContentLoaded", () => {
 
-  // const enemies = []
-
-  const canvas = document.querySelector('canvas');
+  const canvas = document.querySelector("canvas");
   canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto";
-  let ctx = canvas.getContext('2d');
-  
+  let ctx = canvas.getContext("2d");
+
   //background image
   var background = new Image();
   background.src = "src/assets/fixedBackground.png";
-  
-  background.onload = function(){
-    ctx.drawImage(background,0,0,canvas.width, canvas.height);   
-  }
-  
+
+  background.onload = function () {
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+  };
+
   canvas.width = window.innerWidth * 0.5;
-  canvas.height = window.innerHeight *  0.8;
-  
+  canvas.height = window.innerHeight * 0.8;
 
-  let midx = canvas.width/2
-  let midy = canvas.height/2
-  const blaster = new Blaster(canvas)
-  let circle = new Circle(midx, midy, 20, blaster)
+  let midx = canvas.width / 2;
+  let midy = canvas.height / 2;
+  const blaster = new Blaster(canvas);
+  let circle = new Circle(midx, midy, 20, blaster);
 
-  window.onload = function() {
+  window.onload = function () {
     // draw();
     // debugger;
     // circle.animate(ctx);
@@ -50,35 +47,35 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   function game() {
-    circle.draw(ctx)
-    for (let i = 0; i < enemies.length; i++) {
-      let enemy = enemies[i]
-      if (blaster.collidewith(enemy)) {
-        if (enemy.health <= 0) {
-          enemies.splice(i, 1)
-          i--
-        }
-      } else {
-        enemy.draw(ctx)
-      }
-    }
+    circle.draw(ctx);
+    // for (let i = 0; i < enemies.length; i++) {
+    //   let enemy = enemies[i];
+    //   if (blaster.collidewith(enemy)) {
+    //     if (enemy.health <= 0) {
+    //       enemies.splice(i, 1);
+    //       i--;
+    //     }
+    //   } else {
+    //     enemy.draw(ctx);
+    //   }
+    // }
   }
-  setInterval(game, 1000 / 60)
-  
- 
+  setInterval(game, 1000 / 60);
+
   class Square {
     constructor(x, y, direction, isMoving, health) {
       this.x = x;
       this.y = y;
-      this.direction = direction
-      this.isMoving = isMoving
-      this.health = health
-      
+      this.direction = direction;
+      this.isMoving = isMoving;
+      this.health = health;
+
+      this.speed = 2;
     }
 
     draw() {
       for (let i = 0; i < enemies.length; i++) {
-        let enemy = enemies[i]
+        let enemy = enemies[i];
         const { x, y } = enemy;
         ctx.fillStyle = enemyColor;
         ctx.fillRect(x, y, enemySize, enemySize);
@@ -88,39 +85,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // movement animation
     update() {
-      if (this.x < midx - 20) {
-        this.x += 0.25
-      } else {
-        this.x -= 0.25
-      }
-  
-      if (this.y < midy - 20) {
-        this.y += 0.25
-      } else {
-        this.y -= 0.25
+      if (this.isMoving) {
+        if (this.x < midx - 20) {
+          this.x += this.speed;
+        } else {
+          this.x -= this.speed;
+        }
+    
+        if (this.y < midy - 20) {
+          this.y += this.speed;
+        } else {
+          this.y -= this.speed;
+        }
       }
     }
-    animate(ctx) {
-      requestAnimationFrame(this.animate.bind(this, ctx));
-      
-      this.update();
-      this.draw();
-    }
+    // animate(ctx) {
+    //   requestAnimationFrame(this.animate.bind(this, ctx));
+
+    //   this.update();
+    //   this.draw();
+    // }
 
     takeDamage(damage) {
-      this.health -= damage
+      this.health -= damage;
     }
   }
 
   // grab random starting positions
-  let attackPos = []
-  for (let i = 0; i < 10; i++){
-    attackPos.push(startPos[Math.floor(Math.random() * startPos.length)])
+  let attackPos = [];
+  for (let i = 0; i < 20; i++) {
+    attackPos.push(startPos[Math.floor(Math.random() * startPos.length)]);
   }
 
-// puts attack positions into an array
-  const enemies = attackPos.map(options => {
-    return new Square(options.x, options.y, options.direction, options.isMoving);
+  // puts attack positions into an array
+  const enemies = attackPos.map((options) => {
+    return new Square(
+      options.x,
+      options.y,
+      options.direction,
+      options.isMoving, options.health
+    );
   });
 
   // let topAttacks = enemies.filter(options => options.y === -60).map(options => ({...options}))
@@ -130,32 +134,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function animate() {
     requestAnimationFrame(animate);
-    ctx.drawImage(background,0,0,canvas.width, canvas.height); 
-    
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
     blaster.draw(ctx);
     circle.draw(ctx);
-    
+
     //send out attacks 1 by 1
     let i = 0;
     function drawNextEnemy() {
       if (i < enemies.length) {
-        enemies[i].animate(ctx)
-        i++
-        setTimeout(drawNextEnemy, 1000)
+        enemies[i].isMoving = true;
+        i++;
+        setTimeout(drawNextEnemy, 1000);
       }
     }
-    drawNextEnemy()
+    drawNextEnemy();
 
     enemies.forEach((enemy) => {
+      // enemy.update();
+      // enemy.draw();
       if (blaster.collidewith(enemy)) {
         if (enemy.health <= 0) {
           let index = enemies.indexOf(enemy)
           enemies.splice(index, 1)
         }
       } else {
-        enemy.draw(ctx)
+        enemy.update()
+        enemy.draw()
       }
     })
   }
 })
-  

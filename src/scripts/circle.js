@@ -16,28 +16,44 @@ export default class Circle {
     ctx.fill();
 
     // this.shoot()
-    this.shootUp()
+    // this.shootUp()
     // this.shootDown()
   }
   
   keydown(event) {
+    let x = 0, y = 0;
+
     if (event.code === 'ArrowUp' ) { // up arrow
       this.upArrow = true;
       // this.shooting = true
+      y = -1;
     } 
     if (event.code === 'ArrowDown') { // down arrow
       this.downArrow = true;
+      y = 1;
       // this.shooting = true
       // console.log("down key pressed")
     } 
     if (event.code === 'ArrowLeft') { // left arrow
       this.leftArrow = true;
-      // console.log("left key pressed")
+      x = -1;
+        // console.log("left key pressed")
     }  
     if (event.code === 'ArrowRight') { // right arrow
       this.rightArrow = true;
-      // console.log("right key pressed")
-    }  
+      x = 1;
+        // console.log("right key pressed")
+    }
+
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
+      const speed = 6;
+      const delay = 5;
+      const damage = 5;
+      const beamX = this.x
+      const beamY = this.y
+      this.beam.shootUp(beamX, beamY, speed, damage, delay, {x, y});
+    }
+
   }
 
   keyup(event) {
@@ -54,70 +70,6 @@ export default class Circle {
         this.rightArrow = false;
       }  
     }
-
-    shootUp() {
-      let x = 0, y = 0;
-
-      if (this.upArrow) {
-        y = -1;
-      } else if (this.downArrow) {
-        y = 1;
-      } else if (this.leftArrow) {
-        x = -1;
-      } else if (this.rightArrow) {
-        x = 1;
-      }
-      const speed = 6;
-      const delay = 5;
-      const damage = 5;
-      const beamX = this.x
-      const beamY = this.y
-      this.beam.shootUp(beamX, beamY, speed, damage, delay, {x, y});
-
-      // if (this.upArrow === true){
-      //   console.log('pew pew')
-      //   const speed = 6;
-      //   const delay = 5;
-      //   const damage = 5;
-      //   const beamX = this.x
-      //   const beamY = this.y
-      //   this.beam.shootUp(beamX, beamY, speed, damage, delay)
-      // }
-    }
-    // }
-    // shootDown() {
-    //   if (this.downArrow === true){
-    //     // console.log('pew')
-    //     const speed = 6;
-    //     const delay = 5;
-    //     const damage = 1;
-    //     const beamX = this.x
-    //     const beamY = this.y
-    //     this.beam.shootDown(beamX, beamY, speed, damage, delay)
-    //   }
-    // }
-    // shoot() {
-    //   if (this.upArrow === true || this.downArrow === true || this.leftArrow === true || this.rightArrow === true){
-    //     console.log('pew pew')
-    //     const speed = 6;
-    //     const delay = 5;
-    //     const damage = 1;
-    //     const beamX = this.x + this.radius/2
-    //     const beamY = this.y
-    //     this.beam.shoot(beamX, beamY, speed, damage, delay)
-    //   }
-    // }
-    // shoot() {
-    //   if (this.upArrow === true || this.downArrow === true || this.leftArrow === true || this.rightArrow === true){
-    //     console.log('pew pew')
-    //     const speed = 6;
-    //     const delay = 5;
-    //     const damage = 1;
-    //     const beamX = this.x + this.radius/2
-    //     const beamY = this.y
-    //     this.beam.shoot(beamX, beamY, speed, damage, delay)
-    //   }
-    // }
   
   animate(ctx) {
     requestAnimationFrame(this.animate.bind(this, ctx));

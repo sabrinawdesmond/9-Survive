@@ -12,11 +12,11 @@ export default class Blaster {
   }
 
   shootUp(x, y, speed, damage, delay, direction) {
-    if (this.timeBetween <= 0) {
+    // if (this.timeBetween <= 0) {
       this.topBeams.push(new TopBeam(x, y, speed, damage, direction))
-      this.timeBetween = delay
-    }
-    this.timeBetween--
+      // this.timeBetween = delay
+    // }
+    // this.timeBetween--
   }
   // shootDown(x, y, speed, damage, delay) {
   //   console.log("hit")

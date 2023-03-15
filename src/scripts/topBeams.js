@@ -39,14 +39,28 @@ export default class TopBeam {
   }
 
   collidewith(enemy) {
+    const x2 = this.x + this.width;
+    const ex2 = enemy.x + 50;
+    const y2 = this.y + this.height;
+    const ey2 = enemy.y + 50;
+
     if (
-      this.x < enemy.x + enemy.width &&
-      this.x + this.width > enemy.x &&
-      this.y < enemy.y + enemy.height &&
-      this.y + this.height > enemy.y
+      (enemy.direction[0] === -1 && 
+        x2 > enemy.x && 
+        x2 < ex2) ||
+      (enemy.direction[0] === 1 && 
+        this.x < ex2 && 
+        this.x > enemy.x) ||
+      (enemy.direction[1] === 1 && 
+        y2 > enemy.y && 
+        x2 < ey2) ||
+      (enemy.direction[1] === -1 && 
+        this.y < ey2 && 
+        this.y > enemy.y)
     ) {
+      // debugger;
       enemy.takeDamage(this.damage);
-      console.log('direct hit')
+      console.log('hit');
       return true;
     }
     return false
