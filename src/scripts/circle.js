@@ -1,12 +1,12 @@
-
 export default class Circle {
-  constructor(x, y, radius) {
+  constructor(x, y, radius, beam) {
     this.x = x;
     this.y = y;
     this.radius = radius;
-
+    this.beam = beam
     
-    window.addEventListener("keydown", this.keydown)
+    document.addEventListener('keydown', this.keydown.bind(this))
+    document.addEventListener('keyup', this.keyup.bind(this))
   }
   
   draw(ctx) {
@@ -14,11 +14,92 @@ export default class Circle {
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     ctx.fillStyle = "blue";
     ctx.fill();
+
+    // this.shoot()
+    this.shootUp()
+    // this.shootDown()
   }
   
-  // update() {
-  //   this.x++;
-  // }
+  keydown(event) {
+    if (event.code === 'ArrowUp' ) { // up arrow
+      this.upArrow = true;
+      // this.shooting = true
+    } 
+    if (event.code === 'ArrowDown') { // down arrow
+      this.downArrow = true;
+      // this.shooting = true
+      // console.log("down key pressed")
+    } 
+    if (event.code === 'ArrowLeft') { // left arrow
+      this.leftArrow = true;
+      // console.log("left key pressed")
+    }  
+    if (event.code === 'ArrowRight') { // right arrow
+      this.rightArrow = true;
+      // console.log("right key pressed")
+    }  
+  }
+
+  keyup(event) {
+      if (event.code === 'ArrowUp' ) { // up arrow
+        this.upArrow = false;
+      } 
+      if (event.code === 'ArrowDown') { // down arrow
+        this.downArrow = false;
+      } 
+      if (event.code === 'ArrowLeft') { // left arrow
+        this.leftArrow = false;
+      }  
+      if (event.code === 'ArrowRight') { // right arrow
+        this.rightArrow = false;
+      }  
+    }
+
+    shootUp() {
+      if (this.upArrow === true){
+        console.log('pew pew')
+        const speed = 6;
+        const delay = 5;
+        const damage = 1;
+        const beamX = this.x
+        const beamY = this.y
+        this.beam.shootUp(beamX, beamY, speed, damage, delay)
+      }
+    }
+    // }
+    // shootDown() {
+    //   if (this.downArrow === true){
+    //     // console.log('pew')
+    //     const speed = 6;
+    //     const delay = 5;
+    //     const damage = 1;
+    //     const beamX = this.x
+    //     const beamY = this.y
+    //     this.beam.shootDown(beamX, beamY, speed, damage, delay)
+    //   }
+    // }
+    // shoot() {
+    //   if (this.upArrow === true || this.downArrow === true || this.leftArrow === true || this.rightArrow === true){
+    //     console.log('pew pew')
+    //     const speed = 6;
+    //     const delay = 5;
+    //     const damage = 1;
+    //     const beamX = this.x + this.radius/2
+    //     const beamY = this.y
+    //     this.beam.shoot(beamX, beamY, speed, damage, delay)
+    //   }
+    // }
+    // shoot() {
+    //   if (this.upArrow === true || this.downArrow === true || this.leftArrow === true || this.rightArrow === true){
+    //     console.log('pew pew')
+    //     const speed = 6;
+    //     const delay = 5;
+    //     const damage = 1;
+    //     const beamX = this.x + this.radius/2
+    //     const beamY = this.y
+    //     this.beam.shoot(beamX, beamY, speed, damage, delay)
+    //   }
+    // }
   
   animate(ctx) {
     requestAnimationFrame(this.animate.bind(this, ctx));
@@ -26,68 +107,4 @@ export default class Circle {
     this.update();
     this.draw(ctx);
   }
-
-
-  keydown(event) {
-    
-    if (event.code === 'ArrowUp') {
-      // this.upPressed = true
-      // console.log("up key pressed")
-    } // up arrow
-    if (event.code === 'ArrowDown') {
-      // this.downPressed = true
-      // console.log("down key pressed")
-    } // down arrow
-    if (event.code === 'ArrowLeft') {
-      // this.leftPressed = true
-      // console.log("left key pressed")
-    }  // left arrow
-    if (event.code === 'ArrowRight') {
-      // this.rightPressed = true
-      // console.log("up key pressed")
-    }  // right arrow
-
-  }
-
-  // keyup(event) {
-  //   if (event.code === 'ArrowUp') {
-  //     // this.upPressed = false
-  //     // console.log("up key unpressed")
-  //   } // up arrow
-  //   if (event.code === 'ArrowDown') {
-  //     // this.downPressed = false
-  //     // console.log("down key unpressed")
-  //   } // down arrow
-  //   if (event.code === 'ArrowLeft') {
-  //     // this.leftPressed = false
-  //     // console.log("left key unpressed")
-  //   }  // left arrow
-  //   if (event.code === 'ArrowRight') {
-  //     // this.rightPressed = false
-  //     // console.log("up key unpressed")
-  //   } 
-  // }
 }
-// let circle = new Circle(midx, midy, 20)
-
-// window.onload = function() {
-  //   circle.draw()
-  // }
-  
-  
-  // let midx = canvas.width/2
-  // let midy = canvas.height/2
-  
-  // export default function Circle (x, y, radius) {
-  //   this.x = x
-  //   this.y = y
-  //   this.radius = radius
-  
-  //   this.draw = function(ctx) {
-  //     ctx.beginPath()
-  //     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-  //     ctx.fillStyle = "blue"
-  //     ctx.fill()
-  //   }
-  //   // this.draw()
-  // }
