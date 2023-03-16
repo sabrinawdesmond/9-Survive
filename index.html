@@ -32,24 +32,25 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
         background: rgba(205, 255, 253, 0.514);
       }
 
       .canvas-container {
         margin-top: 10px;
+        height: 600px;
       }
 
       .instructions-container {
-        position: fixed;
-        margin-top: 50px;
-        bottom: 0;
+        position: relative;
+        /* margin-top: 50px; */
+        bottom: 0px;
         width: 100vw;
-        padding-top: 64px;
+        /* padding-top: 64px; */
       }
 
       .instructions {
         background-color: rgba(255, 228, 196, 0.428);
-        padding: 10px;
         border-radius: 5px;
         text-align: center;
         font-family: "Copperplate", "Courier New", monospace;
@@ -64,6 +65,10 @@
       .instructions p {
         font-size: 20px;
         margin: 0;
+      }
+
+      .icons img {
+        height: 20px;
       }
     </style>
   </head>
@@ -93,7 +98,7 @@
         </span>
         
         <span>
-          <p><div>
+          <p><div class="icons">
             <a href="mailto:sabrinawdesmond@gmail.com">
               <img src="src/assets/icons8-emails-66.png" alt="email" />
             </a>
