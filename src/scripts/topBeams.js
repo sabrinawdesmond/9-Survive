@@ -58,7 +58,7 @@ export default class TopBeam {
         this.y < ey2 && 
         this.y > enemy.y)
     ) {
-      // debugger;
+  
       enemy.takeDamage(this.damage);
       console.log('hit');
       return true;

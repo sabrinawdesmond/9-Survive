@@ -11,17 +11,21 @@
       type="image/jpg"
       href="src/assets/icons8-work-parzival’-1997-flat-16.png"
     />
+    <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
     <title>Can you survive?</title>
     <style type="text/css">
-      h2 {
+      .title h2 {
         justify-content: center;
         align-items: center;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
+        font-family: 'Bungee Shade';
         font-weight: bolder;
         text-align: center;
-        font-size: 35px;
+        font-size: 60px;
         margin-top: 0px;
+        background-image: linear-gradient(to right, #ec2637, #d4b113, #64be15, #004e91, #7b0e96);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 2px 2px 4px rgba(132, 125, 125, 0.5);
       }
 
       body {
@@ -36,10 +40,11 @@
       }
 
       .instructions-container {
-        position: absolute;
+        position: fixed;
         margin-top: 50px;
         bottom: 0;
-        width: 50%;
+        width: 100vw;
+        padding-top: 64px;
       }
 
       .instructions {
@@ -47,8 +52,7 @@
         padding: 10px;
         border-radius: 5px;
         text-align: center;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
+        font-family: "Copperplate", "Courier New", monospace;
       }
 
       .instructions h2 {
@@ -65,7 +69,9 @@
   </head>
 
   <body>
+    <div class="title">
     <h2>9-Survive</h2>
+  </div>
     <div class="canvas-container">
       <canvas></canvas>
     </div>
@@ -101,7 +107,7 @@
             </a>
           </div></p>
           <span>
-            <p><small><span style="font-style: italic;">*No office mates were harmed in the making of this game.*</span></small></p>
+            <p><small><span style="font-style: italic;">*No co-workers were harmed in the making of this game. Please use words, not phasers, to settle office disputes*</span></small></p>
           </span>
         </span>
       </div>

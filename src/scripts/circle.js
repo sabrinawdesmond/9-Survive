@@ -31,13 +31,12 @@ export default class Circle {
     if (event.code === 'ArrowDown') { // down arrow
       this.downArrow = true;
       y = 1;
-      // this.shooting = true
-      // console.log("down key pressed")
+     
     } 
     if (event.code === 'ArrowLeft') { // left arrow
       this.leftArrow = true;
       x = -1;
-        // console.log("left key pressed")
+      
     }  
     if (event.code === 'ArrowRight') { // right arrow
       this.rightArrow = true;

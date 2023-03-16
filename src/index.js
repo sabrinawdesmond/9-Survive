@@ -23,11 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let circle = new Circle(midx, midy, 20, blaster);
 
   window.onload = function () {
-    // draw();
-    // debugger;
-    // circle.animate(ctx);
     animate();
   }
+
   const enemySize = 50;
   const enemyColor = 'black';
   const startPos = [
@@ -48,17 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function game() {
     circle.draw(ctx);
-    // for (let i = 0; i < enemies.length; i++) {
-    //   let enemy = enemies[i];
-    //   if (blaster.collidewith(enemy)) {
-    //     if (enemy.health <= 0) {
-    //       enemies.splice(i, 1);
-    //       i--;
-    //     }
-    //   } else {
-    //     enemy.draw(ctx);
-    //   }
-    // }
   }
   setInterval(game, 1000 / 60);
 
@@ -79,8 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const { x, y } = enemy;
         ctx.fillStyle = enemyColor;
         ctx.fillRect(x, y, enemySize, enemySize);
-        // enemy.isMoving = true
-        // console.log(enemy)
       }
     }
     // movement animation
@@ -99,12 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-    // animate(ctx) {
-    //   requestAnimationFrame(this.animate.bind(this, ctx));
-
-    //   this.update();
-    //   this.draw();
-    // }
 
     takeDamage(damage) {
       this.health -= damage;
@@ -113,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // grab random starting positions
   let attackPos = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     attackPos.push(startPos[Math.floor(Math.random() * startPos.length)]);
   }
 
