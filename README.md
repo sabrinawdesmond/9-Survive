@@ -58,5 +58,6 @@ This project will be implemented with the following technologies:
 ## Future Features
 * Start, pause, restart features
 * Additional levels where attack speeds increase
+* Additional CSS features
 * Lives and bonus lives
 * Score keeping and high scores
