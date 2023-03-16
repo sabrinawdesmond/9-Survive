@@ -14,10 +14,6 @@ export default class Circle {
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     ctx.fillStyle = "blue";
     ctx.fill();
-
-    // this.shoot()
-    // this.shootUp()
-    // this.shootDown()
   }
   
   keydown(event) {
@@ -25,7 +21,6 @@ export default class Circle {
 
     if (event.code === 'ArrowUp' ) { // up arrow
       this.upArrow = true;
-      // this.shooting = true
       y = -1;
     } 
     if (event.code === 'ArrowDown') { // down arrow
@@ -41,7 +36,7 @@ export default class Circle {
     if (event.code === 'ArrowRight') { // right arrow
       this.rightArrow = true;
       x = 1;
-        // console.log("right key pressed")
+ 
     }
 
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
@@ -52,7 +47,6 @@ export default class Circle {
       const beamY = this.y
       this.beam.shootUp(beamX, beamY, speed, damage, delay, {x, y});
     }
-
   }
 
   keyup(event) {

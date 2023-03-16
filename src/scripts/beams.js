@@ -1,4 +1,4 @@
-export default class TopBeam {
+export default class Beam {
   colors = [
     "red",
     "green",

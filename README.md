@@ -2,6 +2,12 @@
 
 [9 - Survive](https://sabrinawdesmond.github.io/9-Survive/)
 
+## Instructions
+Try to survive the work day by attacking all your distractions!
+
+1. Use the keyboard arrow keys to aim and fire at the incoming distractions.
+2. Try to survive for as long as you can!
+
 
 ## Background and Overview
 9-Survive is an interactive game inspired by a [Google Doodle](https://www.google.com/doodles/halloween-2016) but instead of fighting off ghosts, you will be warding off workplace hazards like incoming emails, chatty co-workers, micro-managers, and the big boss, the CEO. The user will use the keyboard arrows to fight off their attacker before they get to close. If the attacker gets too close, you lose a life. 
@@ -17,7 +23,7 @@ In 9-Survive:
 ***
 ## Wireframes
 
-<img width="1030" alt="Screenshot 2023-03-09 at 2 33 12 PM" src="https://user-images.githubusercontent.com/116519976/224140180-89e75350-0f33-4cb4-a3cf-7e34bfce334a.png">
+[Wireframe Preview](https://user-images.githubusercontent.com/116519976/224140180-89e75350-0f33-4cb4-a3cf-7e34bfce334a.png)
 
 
 * Nav links will include links to the project’s GitHub repo and my Linkedin profile
@@ -30,6 +36,7 @@ This project will be implemented with the following technologies:
 * Webpack and Babel to bundle and transpile the source Javascript code
 * npm to manage project dependencies
 ***
+
 ## Implementation Timeline
 **_Friday Afternoon & Weekend:_**
 * Project Setup, including getting webpack up and running.
@@ -47,3 +54,9 @@ This project will be implemented with the following technologies:
 
 **_Thursday:_**
 * Deploy to GitHub, complete README and instructions.
+***
+## Future Features
+* Start, pause, restart features
+* Additional levels where attack speeds increase
+* Lives and bonus lives
+* Score keeping and high scores

@@ -1,27 +1,24 @@
-import TopBeam from "./topBeams"
+import Beam from "./beams";
 
 export default class Blaster {
-  topBeams = []
-  bottomBeams = []
-  leftBeams = []
-  rightBeams = []
-  timeBetween = 0
+  beams = []
+
   constructor(canvas) {
     this.canvas = canvas
   }
 
-  shootUp(x, y, speed, damage, delay, direction) {
-      this.topBeams.push(new TopBeam(x, y, speed, damage, direction))
+  shootUp(x, y, speed, damage, direction) {
+      this.beams.push(new TopBeam(x, y, speed, damage, direction))
   }
  
   draw(ctx) {
-    this.topBeams.forEach((beam) => beam.draw(ctx));
+    this.beams.forEach((beam) => beam.draw(ctx));
   }
 
   collidewith(enemy) {
-    return this.topBeams.some(beam => {
+    return this.beams.some(beam => {
       if (beam.collidewith(enemy)) {
-        this.topBeams.splice(this.topBeams.indexOf(beam), 1);
+        this.beams.splice(this.beams.indexOf(beam), 1);
         return true
       }
       return false

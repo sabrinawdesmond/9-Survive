@@ -106,11 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // let topAttacks = enemies.filter(options => options.y === -60).map(options => ({...options}))
-  // let bottomAttacks = enemies.filter(options => options.y === canvas.height).map(options => ({...options}))
-  // let leftAttacks = enemies.filter(options => options.x === -60).map(options => ({...options}))
-  // let rightAttacks = enemies.filter(options => options.x === canvas.width).map(options => ({...options}))
-
   function animate() {
     requestAnimationFrame(animate);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -130,8 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     drawNextEnemy();
 
     enemies.forEach((enemy) => {
-      // enemy.update();
-      // enemy.draw();
+
       if (blaster.collidewith(enemy)) {
         if (enemy.health <= 0) {
           let index = enemies.indexOf(enemy)
